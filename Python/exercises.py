@@ -24,7 +24,7 @@ def exercise2() -> None:
     list[middle_index] = 99 
     print(f'Modified items list: {list}')
 
-def exercise3():
+def exercise3() -> None:
     welcome_msg(exercise3)
     dict = {
         'Japan':'Tokio',
@@ -33,7 +33,7 @@ def exercise3():
     }
     print(f'the capital of Spain is: {dict['Spain']}')
 
-def exercise4():
+def exercise4() -> None:
     welcome_msg(exercise4)
     dict = {
         'name': 'Jose Duarte',
@@ -44,7 +44,7 @@ def exercise4():
     dict['food'] = 'Ramen'
     print(f'Modified dict: {dict}')
 
-def exercise5():
+def exercise5() -> None:
     welcome_msg(exercise5)
     list = []
     list.append('Orange')
@@ -53,14 +53,14 @@ def exercise5():
     list.insert(0, 'Apple')
     print(f'Final list is {list}')
 
-def exercise6():
+def exercise6() -> None:
     welcome_msg(exercise6)
     list = ['Dog', 'Cat', 'Hamster', 'Monkey', 'Pigeon']
     list.remove('Hamster')
     deleted = list.pop()
     print(f'The final list: {list}, and the last removed animal was {deleted}')
 
-def exercise7():
+def exercise7() -> None:
     welcome_msg(exercise7)
     list = [3, 5, 1, 4, 9]
     print(f'Original list: {list}')
@@ -69,7 +69,7 @@ def exercise7():
     list.reverse()
     print(f'Reversed List: {list}')
 
-def exercise8():
+def exercise8() -> None:
     welcome_msg(exercise8)
     dict = {
         'Lord of the Rings': 'J.R.R. Tolkien',
@@ -79,7 +79,7 @@ def exercise8():
     print(f'The author from Lords of the rings is: {dict.get('Lord of the Rings', 'Unknown')}')
     print(f'The author from Twilight is: {dict.get('Twilight', 'Unknown')}')
 
-def exercise9():
+def exercise9() -> None:
     welcome_msg(exercise9)
     dict = {
         'Jhon': 4,
@@ -92,7 +92,7 @@ def exercise9():
     print(f'Classroom subjects: {dict.keys()}')
     print(f'Classroom numbers: {dict.values()}')
 
-def exercise10():
+def exercise10() -> None:
     welcome_msg(exercise10)
     dict1 = {
         'Jhon': 4.1,
@@ -108,7 +108,7 @@ def exercise10():
     dict1.update(dict2)
     print(f'Combined dict is: {dict1}')
 
-def exercise11():
+def exercise11() -> None:
     welcome_msg(exercise11)
     selected_numbers = []
     while len(selected_numbers) < 10:
@@ -129,6 +129,45 @@ def exercise11():
     print(f'Average: {avg}')
 
 
+def exercise12():
+    welcome_msg(exercise12)
+
+    def get_number_input(msg: str, min :int=2) -> int:
+        while True:
+            try:
+                number = int(input(f'{msg}\n'))
+                if number < min:
+                    print('Value must be a minimun of {min}')
+                    continue
+                return number
+            except ValueError:
+                print('Only numbers are accepted')
+
+    data_dict = {}
+    number_departments = get_number_input('How many departments?')
+
+    #now filling department names
+    while len(data_dict) < number_departments:
+        department_name = input(f'Give a name for department: {len(data_dict)+1} of { number_departments}\n')
+        data_dict[department_name] = []
+    for department in data_dict.keys():
+        n_employees = get_number_input(f'How many employees for {department}?')
+        while len(data_dict[department]) < n_employees:
+            name = input(f'Name of employee: ({len(data_dict[department])+1} of {n_employees})\n')
+            salary = int(input(f'Salary of employee: ({len(data_dict[department])+1} of {n_employees})\n'))
+            data_dict[department].append((name, salary))
+
+    highest_paid = ('', 0) #we initialize in zero to not mess with comparison and to keep afterwards
+    for (department, data) in data_dict.items():
+        sum_department = sum([int(data[1]) for data in data]) #list comphension yay
+        print(f'The department of: {department} has a total of {sum_department}')
+        highest_paid = max([highest_paid] + data, key=lambda element: element[1])
+        #So instead of comparing everyone it will be more memory intensive
+        #lets use the max from current department and top from previous
+        #at the end of the cycle we already have the max hehe
+    print(f'The highest paid employee across all departments is {highest_paid[0]}')
+
+
 if __name__ == "__main__":
     initial()
     exercise1()
@@ -142,3 +181,4 @@ if __name__ == "__main__":
     exercise9()
     exercise10()
     exercise11()
+    exercise12()
