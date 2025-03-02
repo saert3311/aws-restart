@@ -60,6 +60,75 @@ def exercise6():
     deleted = list.pop()
     print(f'The final list: {list}, and the last removed animal was {deleted}')
 
+def exercise7():
+    welcome_msg(exercise7)
+    list = [3, 5, 1, 4, 9]
+    print(f'Original list: {list}')
+    list.sort()
+    print(f'Sorted List: {list}')
+    list.reverse()
+    print(f'Reversed List: {list}')
+
+def exercise8():
+    welcome_msg(exercise8)
+    dict = {
+        'Lord of the Rings': 'J.R.R. Tolkien',
+        'Hunger Games': 'Suzanne Collins',
+        'Da Vinci code': 'Dan Brown'
+    }
+    print(f'The author from Lords of the rings is: {dict.get('Lord of the Rings', 'Unknown')}')
+    print(f'The author from Twilight is: {dict.get('Twilight', 'Unknown')}')
+
+def exercise9():
+    welcome_msg(exercise9)
+    dict = {
+        'Jhon': 4,
+        'Diana': 7,
+        'Amy': 2,
+        'Tommy': 6,
+        'Alicia': 10
+    }
+
+    print(f'Classroom subjects: {dict.keys()}')
+    print(f'Classroom numbers: {dict.values()}')
+
+def exercise10():
+    welcome_msg(exercise10)
+    dict1 = {
+        'Jhon': 4.1,
+        'Mary': 5.7,
+        'Maria': 8.2
+    }
+    dict2 = {
+        'Lorraine': 4.5,
+        'Danny': 5.9,
+        'Sophia': 9.3
+    }
+
+    dict1.update(dict2)
+    print(f'Combined dict is: {dict1}')
+
+def exercise11():
+    welcome_msg(exercise11)
+    selected_numbers = []
+    while len(selected_numbers) < 10:
+        try:
+            number = int(input(f'Input a number from 1 to 100: ({len(selected_numbers)+1} of 10) \n'))
+            if number < 1 or number > 100:
+                print('Number must be between 1 to 100')
+                continue
+            selected_numbers.append(number)
+        except ValueError: #we capture if the int cant convert to numbers
+            print('Only whole numbers are accepted')
+    big_numbers = [number for number in selected_numbers if number > 50]
+    #i love list and dict comprehensions hehe
+    avg = sum(big_numbers) / len(big_numbers)
+    big_numbers.append(avg)
+    print(f'Normal list: {selected_numbers}')
+    print(f'Big number list: {big_numbers}')
+    print(f'Average: {avg}')
+
+
 if __name__ == "__main__":
     initial()
     exercise1()
@@ -68,3 +137,8 @@ if __name__ == "__main__":
     exercise4()
     exercise5()
     exercise6()
+    exercise7()
+    exercise8()
+    exercise9()
+    exercise10()
+    exercise11()
