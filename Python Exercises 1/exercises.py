@@ -1,12 +1,7 @@
 #Various Python exercises
 #I am trying to use python annotations as good practices hehe
 from math import floor
-
-def initial() -> None:
-    print("Start of exercises")
-
-def welcome_msg(function) -> None:
-    print(f'{function.__name__}:')
+from utility.utility import *
 
 def exercise1() -> None:
     welcome_msg(exercise1)
